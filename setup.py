@@ -54,7 +54,7 @@ packages = [
 ]
 
 setup(
-    name='hyper',
+    name='hyperh2v3',
     version=version,
     description='HTTP/2 Client for Python-- Updated to use h2 v3.X.X',
     long_description=open('README.rst').read() + '\n\n' + open('HISTORY.rst').read(),
