@@ -56,10 +56,10 @@ packages = [
 setup(
     name='hyper',
     version=version,
-    description='HTTP/2 Client for Python',
+    description='HTTP/2 Client for Python-- Updated to use h2 v3.X.X',
     long_description=open('README.rst').read() + '\n\n' + open('HISTORY.rst').read(),
-    author='Cory Benfield',
-    author_email='cory@lukasa.co.uk',
+    author='Cory Benfield and JD Palomino did the h2 v3.X.X update',
+    author_email='jdpcbs@gmail.com',
     url='http://hyper.rtfd.org',
     packages=packages,
     package_data={'': ['LICENSE', 'README.rst', 'CONTRIBUTORS.rst', 'HISTORY.rst', 'NOTICES']},
@@ -71,12 +71,8 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: Implementation :: CPython',
+        'Programming Language :: Python :: 3.9',
     ],
     install_requires=['h2>=2.4,<3.0', 'hyperframe>=3.2,<4.0'],
     tests_require=['pytest', 'requests', 'mock'],
@@ -88,14 +84,10 @@ setup(
     },
     extras_require={
         'fast': ['pycohttpparser'],
-        # Fallback to good SSL on bad Python versions.
-        ':python_full_version < "2.7.9"': [
-            'pyOpenSSL>=0.15', 'service_identity>=14.0.0'
-        ],
         # PyPy with bad SSL modules will likely also need the cryptography
         # module at lower than 1.0, because it doesn't support CFFI v1.0 yet.
         ':platform_python_implementation == "PyPy" and python_full_version < "2.7.9"': [
             'cryptography<1.0'
-        ]
+        ],
     }
 )
