@@ -766,7 +766,10 @@ class TestHyperConnection(object):
         # the default max frame size (16,384 bytes). That will, on the third
         # frame, trigger the processing to increment the flow control window,
         # which should then not happen.
-        f = SettingsFrame(0, settings={h2.settings.SettingCodes.INITIAL_WINDOW_SIZE: 100})
+        f = SettingsFrame(
+            0,
+            settings={h2.settings.SettingCodes.INITIAL_WINDOW_SIZE: 100}
+        )
 
         c = HTTP20Connection('www.google.com')
         c._sock = DummySocket()
@@ -1660,7 +1663,7 @@ class DummySocket(object):
 
     sendall = send
 
-    def recv(self, l):
+    def recv(self, l):  # noqa: E741
         data = self._buffer.read(l)
         self._read_counter += len(data)
         return memoryview(data)
