@@ -74,7 +74,9 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.9',
     ],
-    install_requires=['h2>=2.4,<3.0', 'hyperframe>=3.2,<4.0'],
+    install_requires=[
+        'h2>=3.0,<4.0,!=2.5.0', 'hyperframe>=5.2,<6.0', 'rfc3986>=1.1.0,<2.0', 'brotlipy>=0.7.0,<1.0'
+    ],
     tests_require=['pytest', 'requests', 'mock'],
     cmdclass={'test': PyTest},
     entry_points={
