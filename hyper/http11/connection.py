@@ -11,7 +11,6 @@ import socket
 import base64
 
 from collections.abc import Iterable, Mapping
-import collections
 from hyperframe.frame import SettingsFrame
 
 from .response import HTTP11Response
@@ -294,7 +293,7 @@ class HTTP11Connection(object):
                 return
 
             # Iterables that set a specific content length.
-            elif isinstance(body, collections.Iterable):
+            elif isinstance(body, Iterable):
                 for item in body:
                     try:
                         self._sock.send(item)

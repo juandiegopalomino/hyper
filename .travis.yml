@@ -1,7 +1,8 @@
 language: python
-
+dist: bionic
 python:
   - "3.9"
+  - "3.10"
 
 env:
   - TEST_RELEASE=false HYPER_FAST_PARSE=false
