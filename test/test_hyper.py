@@ -1660,7 +1660,7 @@ class DummySocket(object):
 
     sendall = send
 
-    def recv(self, l):
+    def recv(self, l):  # noqa: E741
         data = self._buffer.read(l)
         self._read_counter += len(data)
         return memoryview(data)

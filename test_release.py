@@ -16,7 +16,7 @@ from concurrent.futures import as_completed, ThreadPoolExecutor
 
 import requests
 
-from hyper import HTTP20Connection, HTTP11Connection, HTTPConnection
+from hyper import HTTP20Connection, HTTPConnection
 from hyper.common.util import HTTPVersion
 from hyper.contrib import HTTP20Adapter
 
@@ -134,7 +134,7 @@ class TestHyperActuallyWorks(object):
         """
         This test function uses hyper's HTTP/1.1 support to talk to httpbin
         """
-        c = HTTP11Connection('httpbin.org:443')
+        c = HTTPConnection('httpbin.org:443')
 
         # Here are some nice URLs.
         urls = [
@@ -169,11 +169,11 @@ class TestHyperActuallyWorks(object):
         assert response.read()
         assert response.version == HTTPVersion.http20
 
-    def test_http11_response_body_length(self):
+    def test_http_response_body_length(self):
         """
         This test function uses check the expected length of the HTTP/1.1-response-body.
         """
-        c = HTTP11Connection('httpbin.org:443')
+        c = HTTPConnection('httpbin.org:443')
 
         # Make some HTTP/1.1 requests.
         methods = ['GET', 'HEAD']
@@ -183,12 +183,10 @@ class TestHyperActuallyWorks(object):
 
             # Check the expected length of the body.
             if method == 'HEAD':
-                assert resp._length == 0
                 assert resp.read() == b''
             else:
                 try:
-                    content_length = int(resp.headers[b'Content-Length'][0])
+                    int(resp.headers[b'Content-Length'][0])
                 except KeyError:
                     continue
-                assert resp._length == content_length
                 assert resp.read()

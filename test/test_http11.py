@@ -295,7 +295,7 @@ class TestHTTP11Connection(object):
             c._sock = sock = DummySocket()
 
             f = DummyFile(b'some binary data')
-            c.request('POST', '/post',  body=f)
+            c.request('POST', '/post', body=f)
 
             expected = (
                 b"POST /post HTTP/1.1\r\n"
@@ -491,7 +491,7 @@ class TestHTTP11Connection(object):
             f.buffer = StringIO(u'some binary data')
 
             with pytest.raises(ValueError):
-                c.request('POST', '/post',  body=f)
+                c.request('POST', '/post', body=f)
         finally:
             # Put back the monkeypatch.
             hyper.http11.connection.os.fstat = old_fstat
@@ -736,7 +736,7 @@ class TestHTTP11Response(object):
 
         data = b''
         for index in range(0, len(body), 2):
-            data += b'2\r\n' + body[index:index+2] + b'\r\n'
+            data += b'2\r\n' + body[index:index + 2] + b'\r\n'
 
         data += b'0\r\n\r\n'
         d._buffer = BytesIO(data)
@@ -986,7 +986,7 @@ class DummySocket(object):
 
         self.queue.append(data)
 
-    def recv(self, l):
+    def recv(self, l):  # noqa: E741
         data = self._buffer.read(l)
         self._read_counter += len(data)
         return memoryview(data)
