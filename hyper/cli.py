@@ -133,7 +133,10 @@ class UrlInfo(object):
 
 def set_url_info(args):
     info = UrlInfo()
-    _result = urlsplit(args._url)
+    url = args._url
+    if not url.startswith("http"):
+        url = f"https://{url}"
+    _result = urlsplit(url)
     for attr in vars(info).keys():
         value = getattr(_result, attr, None)
         if value:
