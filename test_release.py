@@ -14,7 +14,6 @@ from concurrent.futures import as_completed, ThreadPoolExecutor
 import logging
 import random
 import requests
-import threading
 from hyper import HTTP20Connection, HTTP11Connection
 from hyper.contrib import HTTP20Adapter
 
@@ -108,16 +107,16 @@ class TestHyperActuallyWorks(object):
 
         # Here are some nice URLs.
         urls = [
-            'https://www.http2bin.org/',
-            'https://www.http2bin.org/ip',
-            'https://www.http2bin.org/user-agent',
-            'https://www.http2bin.org/headers',
-            'https://www.http2bin.org/get',
-            'https://http2bin.org/',
-            'https://http2bin.org/ip',
-            'https://http2bin.org/user-agent',
-            'https://http2bin.org/headers',
-            'https://http2bin.org/get',
+            'https://www.httpbin.org/',
+            'https://www.httpbin.org/ip',
+            'https://www.httpbin.org/user-agent',
+            'https://www.httpbin.org/headers',
+            'https://www.httpbin.org/get',
+            'https://httpbin.org/',
+            'https://httpbin.org/ip',
+            'https://httpbin.org/user-agent',
+            'https://httpbin.org/headers',
+            'https://httpbin.org/get',
         ]
 
         # Go get everything.
